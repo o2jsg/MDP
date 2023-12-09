@@ -1,12 +1,17 @@
 const mainContainer = document.getElementById("main-container")
-const totoGameContainer = document.getElementById("totoGame-container")
+
+const blockBreaker = document.getElementById("block-breaker")
+const monsterHunter = document.getElementById("monster-hunter")
+
+const blockBreakerContainer = document.getElementById("block-breaker-container")
 const sec = document.getElementById("sec")
 const ms = document.getElementById("ms")
-const totoGame = document.getElementById("totoGame")
 const count = document.getElementById("count")
-const totoGameBoxList = document.getElementById("totoGame-box-list")
+const blockBreakerBoxList = document.getElementById("block-breaker-box-list")
 
-const pageList = ["main", "totoGame", "quicknessGame", "memoryGame"]
+const monsterHunterContainer = document.getElementById("monster-hunter-container")
+
+const pageList = ["main", "blockBreaker", "monsterHunter", "memoryGame"]
 let currentPage = ""
 
 let isGameStart = false
@@ -17,25 +22,33 @@ let redButton = false,
     greenButton = false,
     whiteButton = false
 
-totoGame.addEventListener("click", () => {
+blockBreaker.addEventListener("click", () => {
     mainContainer.classList.add("fade-out")
     setTimeout(() => {
         mainContainer.classList.add("hidden")
-        totoGameContainer.classList.remove("hidden")
+        blockBreakerContainer.classList.remove("hidden")
     }, 501)
     currentPage = pageList[1]
 })
+monsterHunter.addEventListener("click", () => {
+    mainContainer.classList.add("fade-out")
+    setTimeout(() => {
+        mainContainer.classList.add("hidden")
+        monsterHunterContainer.classList.remove("hidden")
+    }, 501)
+    currentPage = pageList[2]
+})
 
-class TotoGame {
+class BlockBreaker {
     static secLimit = 60
     static msLimit = 100
     static color = ["red", "blue", "green", "yellow", "white"]
 
     static countDown = async () => {
-        let secTime = TotoGame.secLimit
-        let msTime = TotoGame.msLimit
-        for(let i = 0; i < TotoGame.secLimit; i++) {
-            for(let n = 0; n < TotoGame.msLimit; n++) {
+        let secTime = BlockBreaker.secLimit
+        let msTime = BlockBreaker.msLimit
+        for(let i = 0; i < BlockBreaker.secLimit; i++) {
+            for(let n = 0; n < BlockBreaker.msLimit; n++) {
                 await new Promise((res) => {
                     setTimeout(() => {
                         msTime -= 1
@@ -73,17 +86,17 @@ class TotoGame {
         count.classList.remove("hidden")
     }
     static randomBox = () => {
-        totoGameBoxList.replaceChildren()
+        blockBreakerBoxList.replaceChildren()
         const selectedColor = []
         for(let i = 0; i < 5; i++) {
             const random = Math.floor(Math.random() * 5)
-            selectedColor.push(TotoGame.color[random])
+            selectedColor.push(BlockBreaker.color[random])
         }
         selectedColor.forEach((value) => {
             const box = document.createElement("img")
             box.classList.add("box")
             box.src = `/texture/box/${value}.png`
-            totoGameBoxList.append(box)
+            blockBreakerBoxList.append(box)
         })
     }
     static start = async () => {
@@ -96,8 +109,8 @@ class TotoGame {
                     time -= 1
                     if(time === 0) {
                         count.innerText = `GO!`
-                        TotoGame.randomBox()
-                        TotoGame.countDown()
+                        BlockBreaker.randomBox()
+                        BlockBreaker.countDown()
                     } else if(time < 0) {
                         count.classList.add("hidden")
                     } else {
@@ -116,7 +129,7 @@ window.addEventListener("keydown", (event) => {
             if(currentPage === pageList[1]) {
                 isGameStart = true
                 count.classList.remove("hidden")
-                TotoGame.start()
+                BlockBreaker.start()
             }
         }
     }

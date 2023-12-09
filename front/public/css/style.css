@@ -80,10 +80,10 @@ body {
     gap: 30px;
     padding: 20px;
 }
-#totoGame {
+#block-breaker {
     background-color: #E8280E;
 }
-#quicknessGame {
+#monster-hunter {
     background-color: #47AD37;
 }
 #memoryGame {
@@ -128,7 +128,7 @@ body {
     right: 30px;
     top: 20px;
 }
-#totoGame-container {
+#block-breaker-container, #monster-hunter-container {
     display: grid;
     grid-template-rows: 1fr 0.5fr 3fr;
     position: absolute;
@@ -139,9 +139,13 @@ body {
     text-align: center;
     transition: opacity .5s;
 }
-#totoGame-title {
+#block-breaker-title {
     font-size: 7rem;
     color: #E8280E;
+}
+#monster-hunter-title {
+    font-size: 7rem;
+    color: #47AD37;
 }
 #timer-container {
     color: #47AD37;
@@ -168,7 +172,7 @@ body {
     -webkit-text-stroke-width: 6px;
     -webkit-text-stroke-color: black;
 }
-#totoGame-box-list {
+#block-breaker-box-list {
     padding: 30px;
     width: 60vw;
     height: 30vh;
@@ -180,6 +184,10 @@ body {
 .box {
     width: 200px;
 }
+
+
+
+
 .fade-out {
     opacity: 0;
 }
