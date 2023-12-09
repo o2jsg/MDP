@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>버튼 게임</title>
+</head>
+<body>
+    <div id="count" class="hidden">3</div>
+    <div id="main-container">
+        <h1 id="main-title" class="title">pushIt!</h1>
+        <div id="game-list">
+            <div id="totoGame" class="game-item">block breaker</div>
+            <div id="quicknessGame" class="game-item">순발력 게임</div>
+            <div id="memoryGame" class="game-item">magoplaytime</div>
+        </div>
+        <div id="ranking"><span class="material-symbols-outlined">rewarded_ads</span></div>    
+    </div>
+    <div id="totoGame-container" class="hidden">
+        <h1 id="totoGame-title" class="title">block breaker</h1>
+        <div id="timer-container">
+            <div id="sec" class="time">60</div>
+            <div id="colon" class="time">:</div>
+            <div id="ms" class="time">00</div>
+        </div>
+        <div id="totoGame-play-container">
+            <div id="totoGame-box-list">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/dist/main.js"></script>
+</html>
