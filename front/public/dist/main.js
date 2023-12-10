@@ -1,7 +1,7 @@
 const mainContainer = document.getElementById("main-container")
 
 const blockBreaker = document.getElementById("block-breaker")
-const monsterHunter = document.getElementById("monster-hunter")
+const pipeHunter = document.getElementById("pipe-hunter")
 
 const blockBreakerContainer = document.getElementById("block-breaker-container")
 const sec = document.getElementById("sec")
@@ -9,7 +9,7 @@ const ms = document.getElementById("ms")
 const count = document.getElementById("count")
 const blockBreakerBoxList = document.getElementById("block-breaker-box-list")
 
-const monsterHunterContainer = document.getElementById("monster-hunter-container")
+const pipeHunterContainer = document.getElementById("pipe-hunter-container")
 
 const pageList = ["main", "blockBreaker", "monsterHunter", "memoryGame"]
 let currentPage = ""
@@ -22,6 +22,30 @@ let redButton = false,
     greenButton = false,
     whiteButton = false
 
+const wait = (time) => {
+    return new Promise((res) => {
+        setTimeout(() => {
+            res("")
+        }, time)
+    })
+}
+const startingCount = async () => {
+    let time = 3
+    const fontColor = ["#47AD37", "#FFD303", "#E8280E", "#039EDE"]
+    for(let i = 0; i < 4; i++) {
+        count.style.color = fontColor[i]
+        await wait(1000)
+        time -= 1
+        if(time === 0) {
+            count.innerText = `GO!`
+        } else if(time < 0) {
+            count.classList.add("hidden")
+        } else {
+            count.innerText = time
+        }
+    }
+}
+
 blockBreaker.addEventListener("click", () => {
     mainContainer.classList.add("fade-out")
     setTimeout(() => {
@@ -30,11 +54,11 @@ blockBreaker.addEventListener("click", () => {
     }, 501)
     currentPage = pageList[1]
 })
-monsterHunter.addEventListener("click", () => {
+pipeHunter.addEventListener("click", () => {
     mainContainer.classList.add("fade-out")
     setTimeout(() => {
         mainContainer.classList.add("hidden")
-        monsterHunterContainer.classList.remove("hidden")
+        pipeHunterContainer.classList.remove("hidden")
     }, 501)
     currentPage = pageList[2]
 })
@@ -99,27 +123,33 @@ class BlockBreaker {
             blockBreakerBoxList.append(box)
         })
     }
+    static start = () => {
+        startingCount().then(() => {
+            BlockBreaker.randomBox()
+            BlockBreaker.countDown()
+        })
+    }
+}
+
+class PipeHunter {
+    static yoshiCount = 25
+    static color = ["red", "blue", "green", "yellow", "white"]
+
+    static popYoshi = async () => {
+        const random = Math.floor(Math.random() * 5)
+        const yoshi = document.getElementById(`yoshi-${PipeHunter.color[random]}`)
+        await new Promise((res) => {
+            setTimeout(() => {
+                res("")
+            }, 1000)
+        })
+    }
+
     static start = async () => {
-        let time = 3
-        const fontColor = ["#47AD37", "#FFD303", "#E8280E", "#039EDE"]
-        for(let i = 0; i < 4; i++) {
-            count.style.color = fontColor[i]
-            await new Promise((res) => {
-                setTimeout(() => {
-                    time -= 1
-                    if(time === 0) {
-                        count.innerText = `GO!`
-                        BlockBreaker.randomBox()
-                        BlockBreaker.countDown()
-                    } else if(time < 0) {
-                        count.classList.add("hidden")
-                    } else {
-                        count.innerText = time
-                    }
-                    res("")
-                }, 1000)
-            })
-        }
+        let currentYoshiCount = yoshiCount
+        startingCount().then(() => {
+            
+        })
     }
 }
 

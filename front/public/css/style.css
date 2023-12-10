@@ -83,7 +83,7 @@ body {
 #block-breaker {
     background-color: #E8280E;
 }
-#monster-hunter {
+#pipe-hunter {
     background-color: #47AD37;
 }
 #memoryGame {
@@ -128,7 +128,7 @@ body {
     right: 30px;
     top: 20px;
 }
-#block-breaker-container, #monster-hunter-container {
+#block-breaker-container {
     display: grid;
     grid-template-rows: 1fr 0.5fr 3fr;
     position: absolute;
@@ -139,15 +139,16 @@ body {
     text-align: center;
     transition: opacity .5s;
 }
+
 #block-breaker-title {
     font-size: 7rem;
     color: #E8280E;
 }
-#monster-hunter-title {
+#pipe-hunter-title {
     font-size: 7rem;
     color: #47AD37;
 }
-#timer-container {
+#timer-container, #count-container {
     color: #47AD37;
     display: flex;
     flex-direction: row;
@@ -165,7 +166,7 @@ body {
     z-index: 3;
     font-family: 'mario', sans-serif;
 }
-.time {
+.time, .yoshi-count {
     font-size: 5rem;
     padding: 20px;
     font-family: 'mario', sans-serif;
@@ -184,8 +185,55 @@ body {
 .box {
     width: 200px;
 }
-
-
+#pipe-hunter-container {
+    display: grid;
+    grid-template-rows: 1fr 0.5fr 3fr;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: opacity .5s;
+}
+#pipe-hunter-play-container {
+    display: flex;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#pipes1, #pipes2 {
+    display: flex;
+    position: absolute;
+    gap: 200px;
+    height: 402.86px;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+#pipes1 {
+    bottom: -100px;
+}
+#pipes2 {
+    bottom: -250px;
+}
+.pipe-container {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+}
+.pipe {
+    width: 150px;
+    z-index: 1;
+}
+.yoshi {
+    position: absolute;
+    width: 100px;
+    z-index: 0;
+}
 
 
 .fade-out {
